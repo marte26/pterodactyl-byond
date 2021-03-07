@@ -1,7 +1,7 @@
 FROM beestation/byond:latest
 
 RUN apt-get update \
-    && apt-get upgrade \
+    && apt-get upgrade -y \
     && useradd -d /home/container -m container
 
 USER        container
