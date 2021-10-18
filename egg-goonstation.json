@@ -10,7 +10,7 @@
     "description": null,
     "features": null,
     "images": [
-        "marte26\/pterodactyl-byond:latest"
+        "ghcr.io\/marte26\/pterodactyl-byond:main"
     ],
     "file_denylist": [],
     "startup": "DreamDaemon goonstation.dmb {{SERVER_PORT}} -trusted -threads on",
