@@ -1,0 +1,41 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2021-10-18T13:47:27+02:00",
+    "name": "Goonstation",
+    "author": "me@cetinmartino.com",
+    "description": null,
+    "features": null,
+    "images": [
+        "marte26\/pterodactyl-byond:latest"
+    ],
+    "file_denylist": [],
+    "startup": "DreamDaemon goonstation.dmb {{SERVER_PORT}} -trusted -threads on",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"The BYOND hub reports\"\r\n}",
+        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n\r\n# update and download the required packages\r\napt-get update\r\napt-get install git wget -y\r\n\r\n# clone the goonstation repo\r\ngit clone https:\/\/github.com\/goonstation\/goonstation.git \/mnt\/server\r\n\r\ncd \/mnt\/server || exit\r\n\r\n# create the required file to compile the server\r\ntouch .\/+secret\/__secret.dme\r\n\r\n# download missing library\r\nwget https:\/\/github.com\/tgstation\/rust-g\/releases\/latest\/download\/librust_g.so\r\n\r\n# compile the server\r\nDreamMaker goonstation.dme",
+            "container": "tgstation\/byond:latest",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Hidden",
+            "description": "",
+            "env_variable": "SERVER_HIDDEN",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean"
+        }
+    ]
+}
